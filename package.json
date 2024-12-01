@@ -1,6 +1,6 @@
 {
   "name": "is-even-odd-ai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Check if a number is even or odd.",
   "main": "index.js",
   "scripts": {
@@ -16,10 +16,12 @@
   "author": "Musa Aqeel",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.6.7",
-    "dotenv": "^16.4.1"
+    "axios": "^1.7.8",
+    "dotenv": "^16.4.5",
+    "is-even-odd-ai": "^1.0.",
+    "sync-request": "^6.1.0"
   },
   "devDependencies": {
     "jest": "^29.7.0"
   }
-} 
+}

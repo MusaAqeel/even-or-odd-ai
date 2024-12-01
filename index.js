@@ -1,34 +1,41 @@
 const axios = require('axios');
 require('dotenv').config();
 
-// Function to check if a number is odd using OpenAI ChatGPT
-async function isOdd(number) {
+function isOdd(number) {
+    // Handle validation
     if (typeof number !== 'number') {
-        throw new TypeError('Input must be a number');
+        console.error('Please provide a valid number');
+        return null;
     }
 
-    try {
-        const requestData = {
+    if (!process.env.OPENAI_API_KEY) {
+        console.error('OpenAI API key is missing. Please set OPENAI_API_KEY in your environment variables.');
+        return null;
+    }
+
+    // Make a synchronous HTTP request
+    const result = require('sync-request')('POST', 'https://api.openai.com/v1/chat/completions', {
+        json: {
             model: "gpt-4o",
             messages: [{ 
+                
                 role: "user", 
                 content: `Is the number ${number} odd or even? Reply with just the word 'odd' or 'even'.` 
             }],
             temperature: 0.3
-        };
+        },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+        }
+    });
 
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', requestData, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
-            }
-        });
-
-        const answer = response.data.choices[0].message.content.trim().toLowerCase();
-        return answer.includes('odd');
+    try {
+        const response = JSON.parse(result.getBody('utf8'));
+        return response.choices[0].message.content.trim().toLowerCase().includes('odd');
     } catch (error) {
-        console.error('Error querying OpenAI:', error);
-        throw error;
+        console.error('Error checking number. Please try again.');
+        return null;
     }
 }
 
