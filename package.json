@@ -18,10 +18,21 @@
   "dependencies": {
     "axios": "^1.7.8",
     "dotenv": "^16.4.5",
-    "is-even-odd-ai": "^1.0.",
     "sync-request": "^6.1.0"
   },
   "devDependencies": {
     "jest": "^29.7.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MusaAqeel/even-or-odd-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MusaAqeel/even-or-odd-ai/issues"
+  },
+  "homepage": "https://github.com/MusaAqeel/even-or-odd-ai#readme",
+  "type": "module"
 }

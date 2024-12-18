@@ -1,17 +1,18 @@
 const isOdd = require('../index');
 
 describe('isOdd', () => {
-    test('should return true for odd numbers', async () => {
-        const result = await isOdd(3);
+    test('should return true for odd numbers', () => {
+        const result = isOdd(3);
         expect(result).toBe(true);
     });
-
-    test('should return false for even numbers', async () => {
-        const result = await isOdd(2);
+    
+    test('should return false for even numbers', () => {
+        const result = isOdd(2);
         expect(result).toBe(false);
     });
 
-    test('should throw error for non-number inputs', async () => {
-        await expect(isOdd('not a number')).rejects.toThrow('Input must be a number');
+    test('should return null for non-number inputs', () => {
+        const result = isOdd('not a number');
+        expect(result).toBe(null);
     });
 }); 
